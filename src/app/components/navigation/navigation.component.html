@@ -1,0 +1,21 @@
+<!-- 
+	@@todo / potential upgrade: 
+	include this in app.component above router outlet
+	reason that it's in all individual pages is to pass in the Topic Name as needed
+-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="#">To Do Again List</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" [ngClass]="{'active' : currentUrl === '/all-topics' || currentUrl === '/'}" routerLink="/">All Topics</a>
+			</li>
+			<li class="nav-item" *ngIf="navTopicName && navTopicName != '' ">
+				<a class="nav-link active" routerLink="/topic/{{navTopicID}}">{{navTopicName}}</a>
+			</li>
+		</ul>
+	</div>
+</nav>

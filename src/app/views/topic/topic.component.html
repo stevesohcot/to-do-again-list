@@ -1,0 +1,101 @@
+<app-navigation></app-navigation>
+
+<div class="container mt-4" *ngIf="topicLoadError">
+	<div class="alert alert-danger">
+		{{topicLoadError}}
+	</div>
+</div>
+
+
+<div class="container mt-4" *ngIf="topicLoadError == ''">
+
+	<div *ngIf="alert && alert == 'itemDeleted'">
+		<div class="alert alert-success mt-4">
+			Item Deleted
+		</div>
+	</div>
+
+	<div *ngIf="editable">
+		<input type="text" name="topicName" [(ngModel)]="topicName">
+		<button (click)="topicUpdate()">Save</button>
+	</div>
+
+	<div *ngIf="!editable">
+		<div class="row">
+			<div class="col">
+				<h2>Topic: {{topicName}}</h2>				
+			</div>
+			<div class="col">
+				<button class="btn btn-warning" (click)="editable = true;">Edit</button>
+				<button class="btn btn-danger ml-3" (click)="topicDelete()">Delete</button>
+			</div>
+		</div>
+		
+	</div>
+
+	<button class="btn btn-primary" (click)="goToNewItem();">Add New Item</button>
+
+	<div *ngIf="!allItems || allItems.length == 0">
+		<div class="alert alert-warning mt-4">
+			No items yet yet: add one above.
+		</div>
+	</div>
+
+	<div id="recent_items" *ngIf="recentItems && recentItems.length > 0">		
+		<h3 class="mt-4">Recent Items</h3>
+		<table class="table">
+			<thead>
+				<tr>
+					<td>Name</td>
+					<td>Rating</td>
+					<td>Get Again?</td>
+					<td>Date</td>
+					<td>Comments</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let item of recentItems">
+					<td><a routerLink="/item/{{item.id}}">{{item.name}}</a></td>
+					<td>{{item.rating}}</td>
+					<td>{{item.getAgain}}</td>
+					<td>{{item.dateUpdated | date}}</td>
+					<td>{{item.comments}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	<div id="all_items" *ngIf="allItems && allItems.length > 3">
+		
+		<div class="row mt-4">
+			<div class="col col-6">
+				<h3>All Items</h3>
+			</div>
+			<div class="col col-6">
+				<input type="text" class="form-control" name="search" [(ngModel)]="searchText" placeholder="Search Items">	
+			</div>
+		</div>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<td>Name</td>
+					<td>Rating</td>
+					<td>Get Again?</td>
+					<td>Date</td>
+					<td>Comments</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let item of allItems | filter: searchText">
+					<td><a routerLink="/item/{{item.id}}">{{item.name}}</a></td>
+					<td>{{item.rating}}</td>
+					<td>{{item.getAgain}}</td>
+					<td>{{item.dateUpdated | date}}</td>
+					<td>{{item.comments}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
