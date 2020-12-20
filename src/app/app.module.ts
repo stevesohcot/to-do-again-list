@@ -12,6 +12,9 @@ import { TopicComponent } from './views/topic/topic.component';
 import { ItemsComponent } from './views/items/items.component';
 
 import { FilterPipe } from './pipes/filter.pipe';
+import { AboutComponent } from './views/about/about.component';
+import { AutofocusDirective } from './directives/autofocus.directive';
+import { LoadingComponent } from './views/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { FilterPipe } from './pipes/filter.pipe';
     NavigationComponent,
     TopicComponent,
     ItemsComponent,
-    FilterPipe
+    FilterPipe,
+    AboutComponent,
+    AutofocusDirective,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

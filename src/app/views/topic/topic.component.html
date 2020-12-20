@@ -15,54 +15,67 @@
 		</div>
 	</div>
 
-	<div *ngIf="editable">
-		<input type="text" name="topicName" [(ngModel)]="topicName">
-		<button (click)="topicUpdate()">Save</button>
+	<div *ngIf="editable" class="text-center">
+		<input type="text" name="topicName" class="form-control" [(ngModel)]="topicName">
+		<button class="btn btn-primary full-if-mobile mt-2" (click)="topicUpdate()">Save Topic Name</button>
 	</div>
 
 	<div *ngIf="!editable">
+
 		<div class="row">
 			<div class="col">
-				<h2>Topic: {{topicName}}</h2>				
+				<h2>{{topicName}}</h2>
 			</div>
-			<div class="col">
-				<button class="btn btn-warning" (click)="editable = true;">Edit</button>
-				<button class="btn btn-danger ml-3" (click)="topicDelete()">Delete</button>
+			<div class="col-1">
+				<button class="btn showOptions" (click)="showOptions = !showOptions;"><span class="fas fa-ellipsis-v"></span></button>
 			</div>
 		</div>
-		
+
+		<div class="row" *ngIf="showOptions">
+			<div class="col">
+				<button class="btn btn-warning" (click)="editable = true;"><span class="far fa-edit"></span> Change Topic Name</button>
+				<button class="btn btn-danger ml-3" (click)="topicDelete()"><span class="far fa-trash-alt"></span>Delete Topic</button>
+			</div>
+
+		</div>
+
 	</div>
 
-	<button class="btn btn-primary" (click)="goToNewItem();">Add New Item</button>
+	<button class="btn btn-primary add full-if-mobile" (click)="goToNewItem();">Add New Item</button>
 
 	<div *ngIf="!allItems || allItems.length == 0">
 		<div class="alert alert-warning mt-4">
-			No items yet yet: add one above.
+			No items yet
 		</div>
 	</div>
 
 	<div id="recent_items" *ngIf="recentItems && recentItems.length > 0">		
 		<h3 class="mt-4">Recent Items</h3>
-		<table class="table">
-			<thead>
-				<tr>
-					<td>Name</td>
-					<td>Rating</td>
-					<td>Get Again?</td>
-					<td>Date</td>
-					<td>Comments</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let item of recentItems">
-					<td><a routerLink="/item/{{item.id}}">{{item.name}}</a></td>
-					<td>{{item.rating}}</td>
-					<td>{{item.getAgain}}</td>
-					<td>{{item.dateUpdated | date}}</td>
-					<td>{{item.comments}}</td>
-				</tr>
-			</tbody>
-		</table>
+		
+		<div class="card mb-4" *ngFor="let item of recentItems">
+			<div class="card-body">
+				<h5 class="card-title">{{item.name}}</h5>
+				<h6 class="card-subtitle text-muted mt-2">Get Again? <strong>{{item.getAgain ? 'YES' : 'NO'}}</strong></h6>
+				<div class="star-rating mt-3 mb-3">
+					<span class="far fa-star" [ngClass]="{'fas': item.rating >= 1}"></span>
+					<span class="far fa-star" [ngClass]="{'fas': item.rating >= 2}"></span>
+					<span class="far fa-star" [ngClass]="{'fas': item.rating >= 3}"></span>
+					<span class="far fa-star" [ngClass]="{'fas': item.rating >= 4}"></span>
+					<span class="far fa-star" [ngClass]="{'fas': item.rating >= 5}"></span>
+				</div>
+				<p class="card-text preWrapWhiteSpace">{{item.comments}}</p>
+
+				<div class="row">
+					<div class="col">
+						<a routerLink="/item/{{item.id}}" class="btn-sm btn-warning btn-outline-secondary">Edit</a>
+					</div>
+					<div class="col text-right">
+						<p class="card-text"><small class="text-muted">{{item.dateUpdated | date}}</small></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 
 
@@ -77,25 +90,31 @@
 			</div>
 		</div>
 
-		<table class="table">
-			<thead>
-				<tr>
-					<td>Name</td>
-					<td>Rating</td>
-					<td>Get Again?</td>
-					<td>Date</td>
-					<td>Comments</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let item of allItems | filter: searchText">
-					<td><a routerLink="/item/{{item.id}}">{{item.name}}</a></td>
-					<td>{{item.rating}}</td>
-					<td>{{item.getAgain}}</td>
-					<td>{{item.dateUpdated | date}}</td>
-					<td>{{item.comments}}</td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="card mb-4" *ngFor="let item of allItems | filter: searchText">
+			<div class="card-body">
+				<h5 class="card-title">{{item.name}}</h5>
+				<h6 class="card-subtitle text-muted mt-2">Get Again? <strong>{{item.getAgain ? 'YES' : 'NO'}}</strong></h6>
+				<div class="star-rating mt-3 mb-3">
+					<span class="far fa-star" [ngClass]="{'fas': item.rating >= 1}"></span>
+					<span class="far fa-star" [ngClass]="{'fas': item.rating >= 2}"></span>
+					<span class="far fa-star" [ngClass]="{'fas': item.rating >= 3}"></span>
+					<span class="far fa-star" [ngClass]="{'fas': item.rating >= 4}"></span>
+					<span class="far fa-star" [ngClass]="{'fas': item.rating >= 5}"></span>
+				</div>
+				<p class="card-text preWrapWhiteSpace">{{item.comments}}</p>
+
+				<div class="row">
+					<div class="col">
+						<a routerLink="/item/{{item.id}}" class="btn-sm btn-warning btn-outline-secondary">Edit</a>
+					</div>
+					<div class="col text-right">
+						<p class="card-text"><small class="text-muted">{{item.dateUpdated | date}}</small></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
 	</div>
 </div>

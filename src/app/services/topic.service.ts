@@ -28,8 +28,8 @@ export class TopicService {
 		return myExtObject.getTopicByID(topicID);
 	}
 
-	topicCreate(topic :TopicVO): Promise<any> {
-		return myExtObject.addTopic(topic.name);
+	topicAdd(topic :TopicVO): Promise<any> {
+		return myExtObject.topicAdd(topic.name);
 	}
 
 	topicUpdate(topicID: number, topicName: string): Promise<any> {

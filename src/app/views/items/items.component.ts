@@ -27,6 +27,8 @@ export class ItemsComponent implements OnInit {
 	navTopicName: string;
 	navTopicID: number;
 
+	public itemNameRequired: boolean = false;
+
 	constructor(private itemService:ItemService,
 				private topicService: TopicService,
 				private activatedRoute: ActivatedRoute,
@@ -63,7 +65,7 @@ export class ItemsComponent implements OnInit {
 					return;
 				}
 				//this.items = this.taskModel.tasks = result.resultObject as ItemVO[];
-				console.log(result);
+				//console.log(result);
 				this.item = result.resultObject[0] as ItemVO;
 
 				this.topicID = this.item.topicID; // used to redirect upon delete
@@ -80,12 +82,12 @@ export class ItemsComponent implements OnInit {
 		// @@todo - verify/change error msgs
 
 		if (!item.name || item.name == ''){
-			//console.log('required');
+			this.itemNameRequired = true;
 			return;
 		}
 
 		if (item.rating < 1 || item.rating > 5) {
-			item.rating = 3;
+			item.rating = 0;
 		}
 
 		this.itemNotificationError = '';
@@ -167,4 +169,7 @@ export class ItemsComponent implements OnInit {
 			); 
 	}
 
+	indicateStars(value: number): void {
+		this.item.rating = value;
+	}
 }

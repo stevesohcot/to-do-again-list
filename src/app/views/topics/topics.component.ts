@@ -17,11 +17,13 @@ export class TopicsComponent implements OnInit {
  	public recentTopics: TopicVO[];
  	public allTopics: TopicVO[];
 	public topicLoadError = '';
-	public topicCreateUpdate = '';
+	public topicAddUpdate = '';
 
 	public alert: string = '';
 
 	searchText: string = '';
+
+	public showTopicError: boolean = false;
 
 	constructor( private topicService:TopicService, 
 					private router: Router,
@@ -52,6 +54,7 @@ export class TopicsComponent implements OnInit {
 				this.recentTopics = result.resultObject;
 			}).catch(
 				error => {
+					//alert('err recent');
 					this.topicLoadError = '[Error]';
 				}
 			);
@@ -65,30 +68,36 @@ export class TopicsComponent implements OnInit {
 				this.allTopics = result.resultObject;
 			}).catch(
 				error => {
+					//alert('err ALL');
+
+					// error with Safari not loading the data
+					//  try again, but only try once (otherwise it'll be an infinite loop)
+					this.router.navigateByUrl('/loading');
 					this.topicLoadError = '[Error]';
 				}
 			);
+
 	}
 
-	topicCreate():void {
+	topicAdd():void {
 		// @@todo - verify/change error msgs
 		if (!this.topic.name || this.topic.name == '') {
-			console.log('required');
+			this.showTopicError = true;
 			return;
 		}
 
-		this.topicCreateUpdate = '';
-		this.topicService.topicCreate(this.topic).then(
+		this.topicAddUpdate = '';
+		this.topicService.topicAdd(this.topic).then(
 			result => {
 				if ( result.error) {
-					this.topicCreateUpdate = 'There was a problem saving the topic.';
+					this.topicAddUpdate = 'There was a problem saving the topic.';
 					return;
 				}
 				//console.log(result);
 				this.router.navigateByUrl('/topic/' + result.topicID);
 			}).catch(			
 				error => {
-					this.topicCreateUpdate = 'There was a problem saving the topic.';
+					this.topicAddUpdate = 'There was a problem saving the topic.';
 				}
 			);
 	}

@@ -1,35 +1,48 @@
 <app-navigation [navTopicName]="navTopicName" [navTopicID]="navTopicID"></app-navigation>
 
-<div class="container">
+<div class="container mt-4">
 
 	<div *ngIf="item">
 		
-		<div>
-			Name
-			<input type="text" name="name" class="form-control" [(ngModel)]="item.name">
-		</div>
+		<form class="add-form">
+			<div class="form-group">
+				<label for="name">Name <span *ngIf="itemNameRequired" class="required">required</span></label>
+				<input type="text" name="name" class="form-control" [(ngModel)]="item.name" appAutofocus>
+			</div>
+			<div class="form-group">
+				<label for="rating">Rating</label>
+				<div class="rating">
+					<div class="star-rating">
+						<span class="fa-star far hand" [ngClass]="{'fas': item.rating >= 1}" (click)="indicateStars(1)"></span>
+						<span class="fa-star far hand" [ngClass]="{'fas': item.rating >= 2}" (click)="indicateStars(2)"></span>
+						<span class="fa-star far hand" [ngClass]="{'fas': item.rating >= 3}" (click)="indicateStars(3)"></span>
+						<span class="fa-star far hand" [ngClass]="{'fas': item.rating >= 4}" (click)="indicateStars(4)"></span>
+						<span class="fa-star far hand" [ngClass]="{'fas': item.rating >= 5}" (click)="indicateStars(5)"></span>
+						<input type="hidden" name="rating" class="form-control" [(ngModel)]="item.rating">
+					</div>
+				</div>
+			</div>
+			<div class="form-group form-check mt-4 mb-4">
+				<label class="form-check-label check" for="getAgain">
+					<input type="checkbox" class="form-check-input" name="getAgainORIG" id="getAgain" [(ngModel)]="item.getAgain">	
+					Do Again?<span class="checkbox"></span>
+				</label>
+			</div>
 
-		<div>
-			Rating
-			<input type="text" name="rating" class="form-control" [(ngModel)]="item.rating">
-		</div>
-
-		<div>
-			Get Again?
-			<input type="checkbox" name="getAgain" class="form-control" [(ngModel)]="item.getAgain">
-		</div>
-
-		<div>
-			Comments
-			<textarea class="form-control" name="comments" [(ngModel)]="item.comments" rows="3" cols="40"></textarea>
-		</div>
-
-		<div class="text-right mt-3">
-			<button class="btn btn-success" 		(click)="itemAddUpdate(item)">Save</button>
-			<button class="btn btn-primary ml-3" 	(click)="goToTopicHome();" 	*ngIf="!item.id">Cancel</button>
-			<button class="btn btn-danger ml-3" 	(click)="itemDelete()" 		*ngIf="item.id > 0">Delete</button>
-		</div>
+			<div class="form-group">
+				<label for="comments">Comments</label>
+				<textarea class="form-control" name="comments" [(ngModel)]="item.comments" rows="4"></textarea>
+			</div>
+			
+			<div class="text-right">
+				<button class="btn btn-primary" 		(click)="itemAddUpdate(item)">Save</button>
+				<button class="btn btn-warning ml-3" 	(click)="goToTopicHome();" 	*ngIf="!item.id">Cancel</button>
+				<button class="btn btn-danger ml-3" 	(click)="itemDelete()" 		*ngIf="item.id > 0">Delete</button>
+			</div>
+		</form>
 		
 	</div>
 
 </div>
+
+		

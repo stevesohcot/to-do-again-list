@@ -4,7 +4,10 @@
 	reason that it's in all individual pages is to pass in the Topic Name as needed
 -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="#">To Do Again List</a>
+	<a class="navbar-brand" routerLink="/">
+		<img src="/assets/images/icons/icon-32x32.png" width="32" height="32" alt="">
+	</a>
+	<a class="navbar-brand" routerLink="/">To Do Again List</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -15,6 +18,9 @@
 			</li>
 			<li class="nav-item" *ngIf="navTopicName && navTopicName != '' ">
 				<a class="nav-link active" routerLink="/topic/{{navTopicID}}">{{navTopicName}}</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link active" routerLink="/about">About</a>
 			</li>
 		</ul>
 	</div>

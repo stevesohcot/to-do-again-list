@@ -230,7 +230,7 @@ var myExtObject = (function() {
 				}
 			)
 		},
-		addTopic: function(topicName) {
+		topicAdd: function(topicName) {
 
 			return new Promise( 
 				function (resolve, reject) {
@@ -293,6 +293,7 @@ var myExtObject = (function() {
 
 		topicDelete: function(topicID) {
 
+			//@@todo / potential upgrade: also delete the items associated with this topic
 			return new Promise( 
 				function (resolve, reject) {
 
@@ -364,7 +365,7 @@ var myExtObject = (function() {
 			// a promise is returned; need to unwrap the promise with .then
 			this.getTopicByID(objItem.topicID)
 				.then( res=>
-					this.updateTopic(objItem.topicID, res.resultObject[0]['name'] )
+					this.topicUpdate(objItem.topicID, res.resultObject[0]['name'] )
 				);
 
 			return new Promise( 
@@ -406,14 +407,13 @@ var myExtObject = (function() {
 
 		itemUpdate: function(objItem) {
 
-
 			// @@todo / potential upgrade / to be improved:
 			// Update the date of the Topic;
 			// Need to get the Topic Name first or else it will save it as a blank
 			// a promise is returned; need to unwrap the promise with .then
 			this.getTopicByID(objItem.topicID)
 				.then( res=>
-					this.updateTopic(objItem.topicID, res.resultObject[0]['name'] )
+					this.topicUpdate(objItem.topicID, res.resultObject[0]['name'] )
 				);
 
 

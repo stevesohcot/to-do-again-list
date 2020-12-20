@@ -27,8 +27,9 @@ export class TopicComponent implements OnInit {
 	public recentItems: ItemVO[];
 	public allItems: ItemVO[];
 
-	public topicCreateUpdate: string = '';
+	public topicAddUpdate: string = '';
 	public editable: boolean = false;
+	public showOptions: boolean = false;
 
 	searchText: string = '';
 
@@ -104,11 +105,15 @@ export class TopicComponent implements OnInit {
 
 	topicUpdate():void {
 	
-		this.topicCreateUpdate = '';
+		if (this.topicName == '') {
+			return;
+		}
+
+		this.topicAddUpdate = '';
 		this.topicService.topicUpdate(this.topicID, this.topicName).then(
 			result => {
 				if ( result.error) {
-					this.topicCreateUpdate = 'There was a problem saving the topic.';
+					this.topicAddUpdate = 'There was a problem saving the topic.';
 					return;
 				}
 				//console.log(result);
@@ -116,27 +121,32 @@ export class TopicComponent implements OnInit {
 				this.editable = false;
 			}).catch(
 				error => {
-					this.topicCreateUpdate = 'There was a problem saving the topic.';
+					this.topicAddUpdate = 'There was a problem saving the topic.';
 				}
 			);
 	}
 
 	topicDelete():void {
 	
-		this.topicCreateUpdate = '';
-		this.topicService.topicDelete(this.topicID).then(
-			result => {
-				if ( result.error) {
-					this.topicCreateUpdate = 'There was a problem deleting the topic.';
-					return;
-				}
-				
-				this.router.navigate(['all-topics'], {queryParams: {alert: 'topicDeleted'}});
-			}).catch(
-				error => {
-					this.topicCreateUpdate = 'There was a problem deleting the topic.';
-				}
-			);
+		var reallyDelete = confirm("Really delete this Topic and all Items associated with it?");
+
+		if (reallyDelete) {
+
+			this.topicAddUpdate = '';
+			this.topicService.topicDelete(this.topicID).then(
+				result => {
+					if ( result.error) {
+						this.topicAddUpdate = 'There was a problem deleting the topic.';
+						return;
+					}
+					
+					this.router.navigate(['all-topics'], {queryParams: {alert: 'topicDeleted'}});
+				}).catch(
+					error => {
+						this.topicAddUpdate = 'There was a problem deleting the topic.';
+					}
+				);
+		}
 	}
 
 }
