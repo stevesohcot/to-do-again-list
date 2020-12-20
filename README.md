@@ -1,27 +1,22 @@
-# Todoagainlist
+# To Do Again List
+![To Do Again List](https://stevesohcot.github.io/to-do-again-list/dist2/assets/images/to-do-again-list-screenshot.png)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
+### [View Demo](https://stevesohcot.github.io/to-do-again-list/dist2)
 
-## Development server
+## What is it?
+An app to catalogue likeable items based on a topic.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Each item can have a 5-star rating, comments, and most importantly an indication of would you do this again?
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Why use it?
+Personally, I'm using it to track food/drinks at a restaurant (pizza toppings, ice cream flavors, etc.)
 
-## Build
+But you can track anything: TV shows you like, wine brands to recommend, videogames to play again, etc.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Tech Info
+My first Progressive Web Application, built using Angular.  If installed to the homescreen, there's an icon, a loading screen, and the ability to work offline.  Uses an IndexedDb, which remains local to the browser.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### [View Demo](https://stevesohcot.github.io/to-do-again-list/dist2)
