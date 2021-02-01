@@ -1,0 +1,250 @@
+body {
+  font-family: 'Raleway', sans-serif !important;
+  font-size: 1.2rem !important;
+  line-height: 1.6;
+  color: #000000;
+  margin: 0;
+}
+
+.aboutHeader {
+  font-size: 1.7rem !important;
+}
+h1 {
+	font-weight: 300;
+	color: #0083A6;
+	text-align: center;
+	padding: 10px;
+}
+
+h3, h4 {
+	font-weight: 300;
+	color: #0083A6;
+	border-top: 3px solid #0083A6;
+	text-align: center;
+	padding: 10px;
+}
+
+.required {
+	color:red;
+	font-weight: bold;
+}
+
+.hand {
+  cursor: pointer;;
+}
+
+.preWrapWhiteSpace {
+  white-space: pre-wrap;
+}
+nav.navbar {
+	background: #0083A6 !important;
+}
+
+.navbar-light .navbar-brand, .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+  color: #fff;
+}
+
+.btnGetStated {
+  background-color: #fac12d;
+  color: black;
+  font-weight: bold;
+  border: 2px solid #fac12d;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  transition-duration: 0.4s;
+  border-radius: 12px;
+  padding: 20px;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.btnGetStated:hover {
+  background-color: white;
+  color: #fac12d;
+  text-decoration: none;
+}
+
+
+
+.btn {
+    border-radius: 0;
+    margin-bottom: 30px;
+    border:none;
+    height: 50px;
+}
+.btn.showOptions {
+    max-width: 80px;
+    float: right;
+    font-size: 1em;
+    margin-top: -10px;
+}
+.btn.add {
+  background: #FFA900;
+  max-width: 500px;
+  display: block;
+  margin: 0 auto;
+}
+.btn.add:focus, .btn.add:hover {
+  background: #FF7F02;
+}
+
+.btn-outline-secondary  {
+	color: inherit;
+	padding: 10px;
+}
+
+.btn-outline-secondary a, .btn-outline-secondary:hover  {
+	text-decoration: none;
+}
+
+
+.form-control:focus {
+	border-color: #fac12d;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+}
+
+
+ul.list-group {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 50px;
+}
+li.list-group-item {
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-radius: 0 !important;
+}
+li.list-group-item:focus, li.list-group-item:hover {
+  background: #f1f1f1;
+}
+li.list-group-item:focus a, li.list-group-item:hover a {
+  color: #0083A6;
+  margin-left: 10px;
+  text-decoration: none;
+
+}
+li.list-group-item a {
+    color: #515151;
+    font-weight: 500;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+
+.alert-warning {
+    color: #515151;
+    background-color: #f1f1f1;
+    border-color: #f1f1f1;
+    text-align: center;
+    padding: 100px;
+}
+
+
+
+
+.star-rating {
+  line-height: 1;
+  font-size: 1em;
+}
+
+.star-rating .fa-star.far {
+  color: #bbb;
+}
+
+.star-rating .fa-star.fas {
+  color: #fac12d;
+}
+
+
+
+.check {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.check input {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.check input:checked ~ .checkbox {
+  background-color: #fac12d;
+  border-color: #fac12d;
+}
+
+.check input:checked ~ .checkbox:after {
+  display: block;
+}
+
+.checkbox {
+  position: absolute;
+  top: 0;
+  left: -18px;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #888;
+  border-radius: 15%;
+  cursor: pointer;
+}
+
+.checkbox:after {
+  content: "";
+  position: absolute;
+  display: none;
+  top: 2px;
+  left: 6px;
+  width: 7px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+}
+
+#top {
+  position: fixed;
+  bottom: 40px;
+  right: 28px;
+  display: none;
+  background: #fac12d;
+  cursor: pointer;
+  z-index: 999;
+  color: white;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 1px 10px rgba(68, 68, 68, 0.7);
+          box-shadow: 0 1px 10px rgba(68, 68, 68, 0.7);
+}
+
+
+@media (max-width: 640px) {
+	.btn.full-if-mobile {
+		width:100%;
+	}
+}
+
+
